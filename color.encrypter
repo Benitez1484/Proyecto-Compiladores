@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+public class AverageCalculator {
+    public static void main(String[] args) {
+        ArrayList<Double> numbers = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese números para calcular el promedio (ingrese 'fin' para terminar):");
+
+        while (scanner.hasNext()) {
+            if (scanner.hasNextDouble()) {
+                numbers.add(scanner.nextDouble());
+            } else {
+                String input = scanner.next();
+                if ("fin".equalsIgnoreCase(input)) {
+                    break;
+                } else {
+                    System.out.println("Entrada no válida. Por favor, ingrese un número o 'fin' para terminar.");
+                }
+            }
+        }
+
+        scanner.close();
+
+        if (!numbers.isEmpty()) {
+            double sum = 0;
+            for (double num : numbers) {
+                sum += num;
+            }
+            double average = sum / numbers.size();
+            System.out.println("El promedio es: " + average);
+        } else {
+            System.out.println("No se ingresaron números para calcular.");
+        }
+    }
+}
